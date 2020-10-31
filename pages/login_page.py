@@ -9,7 +9,6 @@ class LoginPage(BasePage):
 
     def should_be_login_url(self):
         assert "login" in str(self.browser.current_url), "Not true url (without /login)"
-        #assert self.is_element_present(*MainPageLocators.LOGIN_LINK), "Login link is not presented"
 
     def should_be_login_form(self):
         assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), "Login-Form is not presented"
