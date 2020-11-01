@@ -32,3 +32,12 @@ class ProductPage(BasePage):
         text_mini_basket_price = piece_of_text.split("V", 1)[0].strip()
                
         assert text_product_price == text_alert_basket_price == text_mini_basket_price, "The price of a product or basket is not equal"
+    
+    #отрицательная проверка
+    def should_not_be_success_message_about_added_to_basket(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_ADDED_TO_BASKET), \
+       "Success message is presented, but should not be"
+       
+    def should_disappeared_success_message_about_added_to_basket(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_ADDED_TO_BASKET), \
+       "Success message is presenting, but should disappeared"

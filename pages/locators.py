@@ -18,3 +18,4 @@ class ProductPageLocators():
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main .price_color")
     BASKET_MINI_ALL_PRICE = (By.CSS_SELECTOR, ".basket-mini.pull-right.hidden-xs")
     ALERT_BASKET_PRICE = (By.CSS_SELECTOR, ".alert.alert-noicon.alert-info strong")
+    SUCCESS_ADDED_TO_BASKET = (By.CSS_SELECTOR, ".alert.alert-success.fade.in:nth-child(1)")
