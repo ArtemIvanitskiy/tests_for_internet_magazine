@@ -6,10 +6,9 @@ import math
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     #LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BASKET_LINK = (By.CSS_SELECTOR, ".basket-mini a.btn.btn-default")
 
-#class MainPageLocators():
-    #LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    
+#class MainPageLocators(): 
     
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
@@ -23,3 +22,7 @@ class ProductPageLocators():
     BASKET_MINI_ALL_PRICE = (By.CSS_SELECTOR, ".basket-mini.pull-right.hidden-xs")
     ALERT_BASKET_PRICE = (By.CSS_SELECTOR, ".alert.alert-noicon.alert-info strong")
     SUCCESS_ADDED_TO_BASKET = (By.CSS_SELECTOR, ".alert.alert-success.fade.in:nth-child(1)")
+    
+class BasketPageLocators():
+    BASKET_ITEM = (By.CSS_SELECTOR, ".basket-items")
+    BASKET_EMPTY = (By.CSS_SELECTOR, "#content_inner p")

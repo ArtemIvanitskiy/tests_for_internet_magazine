@@ -2,6 +2,7 @@
 import pytest
 from .pages.locators import ProductPageLocators
 import time
+from .pages.basket_page import BasketPage
 
 
 @pytest.mark.parametrize('promo_number', ["1", "2", "3", "4", "5", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"]) #если списком list(range(1, 9), то не получается пометить xfail для упавшего теста, так что пришлось список вручную печатать по-простому
@@ -52,3 +53,12 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.add_to_basket()
     time.sleep(1)
     page.should_disappeared_success_message_about_added_to_basket() #True failed
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/metasploit_193/"
+    page = BasketPage(browser, link)
+    page.open()
+    page.go_to_basket()
+    page.should_not_be_product()
+    page.should_be_element_cart_is_empty()

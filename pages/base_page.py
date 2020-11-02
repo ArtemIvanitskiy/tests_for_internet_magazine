@@ -6,6 +6,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
 
+#Хорошо бы улучшить наследование тестов, учитывая /checkout/. Можно сделать базовую страницу, от неё базовую страницу магазина (с шапкой, поиском, и всяким таким), от которой наследуются остальные страницы магазина (страница продукта, каталога и тд), и отдельно от base page отнаследовать checkout page. 
+
+#В этот файл правильно будет добавить методы поиска по сайту и выбора языка интерфейса 
+
 class BasePage():
     def __init__(self, browser, url): #убрал таймаут timeout=10
        self.browser = browser
@@ -20,7 +24,11 @@ class BasePage():
         
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"   
-    
+
+    def go_to_basket(self):
+        basket_button = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        basket_button.click()
+        
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
