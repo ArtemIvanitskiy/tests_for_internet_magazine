@@ -28,9 +28,9 @@ class ProductPage(BasePage):
         text = self.browser.find_element(*ProductPageLocators.BASKET_MINI_ALL_PRICE).text
         #убираем из всего текста текст "Basket total:", получая текст после ":"
         piece_of_text = text.split(":")[-1].strip()
-        #убираем текст "View basket"
-        text_mini_basket_price = piece_of_text.split("V", 1)[0].strip()
-               
+        #убираем текст "View basket" и добавляем £
+        text_mini_basket_price = piece_of_text.split("£")[-2].strip() + " £"
+        
         assert text_product_price == text_alert_basket_price == text_mini_basket_price, "The price of a product or basket is not equal"
     
     #отрицательная проверка
