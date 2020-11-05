@@ -19,6 +19,8 @@ def browser(request):
         print("\nstart chrome browser for test..")
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+        options.add_experimental_option("excludeSwitches", ["enable-logging"]) #настройка, чтобы убрать ошибку Getting Default Adapter failed.
+        options.add_argument('--start-maximized') # настройка открытия теста на весь экран
         browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         print("\nstart firefox browser for test..")

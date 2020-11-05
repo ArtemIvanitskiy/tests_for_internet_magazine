@@ -6,15 +6,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
 
-#Хорошо бы улучшить наследование тестов, учитывая /checkout/. Можно сделать базовую страницу, от неё базовую страницу магазина (с шапкой, поиском, и всяким таким), от которой наследуются остальные страницы магазина (страница продукта, каталога и тд), и отдельно от base page отнаследовать checkout page. 
-
-#В этот файл правильно будет добавить методы поиска по сайту и выбора языка интерфейса 
 
 class BasePage():
-    def __init__(self, browser, url): #убрал таймаут timeout=10
+    def __init__(self, browser, url):
        self.browser = browser
        self.url = url
-       # self.browser.implicitly_wait(timeout)
+
     def open(self):
        self.browser.get(self.url)
        
@@ -60,14 +57,12 @@ class BasePage():
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return True
-
         return False
         
     def is_disappeared(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException).\
-               until_not(EC.presence_of_element_located((how, what))) #это не дублирование скобок, (how, what) это кортеж или tuple который передаем в метод until. Кортеж неизменяемый, нужен чтобы строго 2 аргумента
+               until_not(EC.presence_of_element_located((how, what))) #это не дублирование скобок, (how, what) это кортеж или tuple который передаем в метод until. Кортеж неизменяемый, нужен чтобы точно 2 аргумента
         except TimeoutException:
            return False
-           
         return True
