@@ -72,7 +72,9 @@ class TestUserAddToBasketFromProductPage():
         link = "http://selenium1py.pythonanywhere.com/accounts/login/"
         page = LoginPage(browser, link)
         page.open()
-        page.register_user()
+        email = str(time.time()) + "@fortest.ru"
+        password = "zxcvb1234"
+        page.register_user(email, password)
         page.should_be_authorized_user()               
         
     def test_user_cant_see_success_message(self, browser):
